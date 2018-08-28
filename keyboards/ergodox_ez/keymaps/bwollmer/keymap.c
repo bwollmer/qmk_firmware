@@ -18,12 +18,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   `    |   1  |   2  |   3  |   4  |   5  | ESC  |           |      |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |   `    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Del    |   Q  |   W  |   E  |   R  |   T  |  L1  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   =    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Tab    |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|   '    |
- * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------| ESC  |           | Meh  |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | ~L1  |  '   |      | LALT | CTRL |                                       | RAlt | Win  |      |      | ~L1  |
@@ -40,10 +40,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_GRAVE,       KC_1,         KC_2,     KC_3,    KC_4,     KC_5,   KC_ESC,
+        KC_GRAVE,       KC_1,         KC_2,     KC_3,    KC_4,     KC_5,   KC_TRNS,
         KC_DELT,        KC_Q,         KC_W,     KC_E,    KC_R,     KC_T,   TG(SYMB),
         KC_TAB,         KC_A,         KC_S,     KC_D,    KC_F,     KC_G,
-        KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,     KC_B,   ALL_T(KC_NO),
+        KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,     KC_B,   KC_ESC,
         KC_FN1,        KC_QUOT,      KC_TRNS,  KC_LALT, KC_LCTRL,
                                                KC_TRNS,  KC_RGUI,
                                                               KC_HOME,
