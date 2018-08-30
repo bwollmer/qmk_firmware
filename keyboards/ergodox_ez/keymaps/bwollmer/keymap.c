@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| ESC  |           | Meh  |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | ~L1  |  '   |      | LALT | CTRL |                                       | RAlt | Win  |      |      |      |
+ *   | ~L1  |  '   |      | LALT | CTRL |                                       | RAlt | Win  |  W_D |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | PgUP | Win  |       |      |PgDwn |
@@ -45,16 +45,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELT,        KC_Q,         KC_W,     KC_E,    KC_R,     KC_T,    KC_TRNS,
         KC_TAB,         KC_A,         KC_S,     KC_D,    KC_F,     KC_G,
         KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,     KC_B,    KC_ESC,
-        KC_FN1,        KC_QUOT,      KC_TRNS,  KC_LALT, KC_LCTRL,
+        KC_FN1,         KC_QUOT,      KC_TRNS,  KC_LALT, KC_LCTRL,
                                                              KC_PGUP,       KC_RGUI,
                                                                             KC_PSCR,
                                                      KC_SPC, KC_BSPC, LT(I3,KC_HOME),
         // right hand
-             KC_TRNS,      KC_6,   KC_7,    KC_8,    KC_9,    KC_0,              KC_MINS,
-             KC_TRNS,      KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,              KC_EQL,
-                           KC_H,   KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), KC_QUOT,
-             MEH_T(KC_NO), KC_N,   KC_M,    KC_COMM, KC_DOT,  CTL_T(KC_SLSH),    RSFT_T(KC_BSLS),
-                                   KC_RALT, KC_RGUI, KC_TRNS, KC_TRNS,           KC_TRNS,
+             KC_TRNS,      KC_6,   KC_7,    KC_8,    KC_9,       KC_0,              KC_MINS,
+             KC_TRNS,      KC_Y,   KC_U,    KC_I,    KC_O,       KC_P,              KC_EQL,
+                           KC_H,   KC_J,    KC_K,    KC_L,       LT(MDIA, KC_SCLN), KC_QUOT,
+             MEH_T(KC_NO), KC_N,   KC_M,    KC_COMM, KC_DOT,     CTL_T(KC_SLSH),    RSFT_T(KC_BSLS),
+                                   KC_RALT, KC_RGUI, RGUI(KC_D), KC_TRNS,           KC_TRNS,
              KC_TRNS, KC_PGDN,
              KC_INS,
              KC_END, KC_FN1, KC_ENT
@@ -147,41 +147,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      |  W_4 |      |  W_3 |      |           |      |      |      |      |      |      |        |
+ * |        |      |      |  W_4 |      |  W_3 |      |           |      |W_S_H |W_S_J |W_S_K |W_S_L |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |  W_0 |      |      | W_F  |  W_9 |------|           |------|      |      |      |      |      |        |
- * |--------+------+------+------+------+------|W_S_Q |           |      |------+------+------+------+------+--------|
- * |        |      |      |  W_2 |      |  W_1 |      |           |      |      |      |      |      |      |        |
+ * |        |  W_0 |      |  W_D | W_F  |  W_9 |------|           |------| W_H  | W_J  | W_K  | W_L  |      |        |
+ * |--------+------+------+------+------+------|W_S_Q |           |  W_A |------+------+------+------+------+--------|
+ * |        |      |      |  W_2 |      |  W_1 |      |           |      |W_C_H |W_C_J |W_C_K |W_C_L |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      | W_5  | W_6  | W_7  | W_8  |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |      |
+ *                                        |   W_`|      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |  W_  |
+ *                                 |      |      |      |       |      |  W_' |  W_  |
  *                                 |      |      |------|       |------|      |Enter |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |      |       | W_-  |      |      |
  *                                 `--------------------'       `--------------------'
  */
 // I3
 [I3] = LAYOUT_ergodox(
        KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
        KC_TRNS, KC_TRNS,    KC_TRNS,    RGUI(KC_4), KC_TRNS,     RGUI(KC_3), KC_TRNS,
-       KC_TRNS, RGUI(KC_0), KC_TRNS,    KC_TRNS,    RGUI(KC_F),  RGUI(KC_9),
+       KC_TRNS, RGUI(KC_0), KC_TRNS,    RGUI(KC_D), RGUI(KC_F),  RGUI(KC_9),
        KC_TRNS, KC_TRNS,    KC_TRNS,    RGUI(KC_2), KC_TRNS,     RGUI(KC_1), RGUI(S(KC_Q)),
        KC_TRNS, RGUI(KC_5), RGUI(KC_6), RGUI(KC_7), RGUI(KC_8),
-                                                                 KC_TRNS, KC_TRNS,
-                                                                          KC_TRNS,
-                                                        KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                 RGUI(KC_GRAVE), KC_TRNS,
+                                                                                 KC_TRNS,
+                                                        KC_TRNS, KC_TRNS,        KC_TRNS,
     // right hand
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS,
+       KC_TRNS,    KC_TRNS,          KC_TRNS,          KC_TRNS,          KC_TRNS,          KC_TRNS, KC_TRNS,
+       KC_TRNS,    RGUI(S(KC_H)),    RGUI(S(KC_J)),    RGUI(S(KC_K)),    RGUI(S(KC_L)),    KC_TRNS, KC_TRNS,
+                   RGUI(KC_H),       RGUI(KC_J),       RGUI(KC_K),       RGUI(KC_L),       KC_TRNS, KC_TRNS,
+       RGUI(KC_A), RGUI(LCTL(KC_H)), RGUI(LCTL(KC_J)), RGUI(LCTL(KC_K)), RGUI(LCTL(KC_L)), KC_TRNS, KC_TRNS,
+                                   KC_TRNS,          KC_TRNS,          KC_TRNS,          KC_TRNS, KC_TRNS,
+       KC_TRNS,       KC_TRNS,
        KC_TRNS,
-       KC_TRNS, KC_TRNS, RGUI(KC_ENT)
+       RGUI(KC_MINS), RGUI(KC_QUOT), RGUI(KC_ENT)
 ),
 };
 
