@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      |Print |       | Ins  |        |      |
  *                                 | Space|Backsp|------|       |------|  ~L1   |Enter |
- *                                 |      |ace   |Hme/I3|       | End  |        |      |
+ *                                 |      |ace   |Hme/I3|       |End/I3|        |      |
  *                                 `--------------------'       `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            KC_H,   KC_J,    KC_K,    KC_L,       LT(MDIA, KC_SCLN), KC_QUOT,
              MEH_T(KC_NO), KC_N,   KC_M,    KC_COMM, KC_DOT,     CTL_T(KC_SLSH),    RSFT_T(KC_BSLS),
                                    KC_RALT, KC_RGUI, RGUI(KC_D), KC_TRNS,           KC_TRNS,
-             KC_TRNS, KC_PGDN,
+             KC_TRNS,       KC_PGDN,
              KC_INS,
-             KC_END, KC_FN1, KC_ENT
+             LT(I3,KC_END), KC_FN1, KC_ENT
     ),
 /* Keymap 1: Symbol Layer
  *
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |WheelD| MsUp |WheelU|      |      |           |      |      |      |  UP  |      |      |        |
+ * |        |      |WheelD| MsUp |WheelU|      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |      |MsLeft|MsDown|MsRght|      |------|           |------| Left | Down |  UP  | Right|      |  Play  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
