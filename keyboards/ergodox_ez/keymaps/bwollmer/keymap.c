@@ -7,6 +7,8 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 #define I3 3 // i3 navigation
+#define PSB 4 // i3 navigation
+#define PSN 5 // i3 navigation
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -19,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   `    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |   `    |   1  |   2  |   3  |   4  |   5  | ~PSB |           |      |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | Del    |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |   =    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -41,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
-        KC_GRAVE,       KC_1,         KC_2,     KC_3,    KC_4,     KC_5,    KC_TRNS,
+        KC_GRAVE,       KC_1,         KC_2,     KC_3,    KC_4,     KC_5,    TG(PSB),
         KC_DELT,        KC_Q,         KC_W,     KC_E,    KC_R,     KC_T,    KC_TRNS,
         KC_TAB,         KC_A,         KC_S,     KC_D,    KC_F,     KC_G,
         KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,     KC_B,    KC_ESC,
@@ -183,6 +185,92 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        RGUI(KC_MINS), RGUI(KC_QUOT), RGUI(KC_ENT)
 ),
+/* Photoshop
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |   `    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | Del    |   Q  |   W  |   E  |   R  |   T  | ~PSN |           |      |   Y  |   U  |   I  |   O  |   P  |   =    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * | Tab    |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|   '    |
+ * |--------+------+------+------+------+------| ESC  |           | Meh  |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   | ~L1  |  '   |   H  | LALT | CTRL |                                       | RAlt | Win  |  W_D |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        | PgUP | Win  |       |      |PgDwn |
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 |      |      |Print |       | Ins  |        |      |
+ *                                 | Space|Backsp|------|       |------|  ~L1   |Enter |
+ *                                 |      |ace   |Hme/I3|       |End/I3|        |      |
+ *                                 `--------------------'       `----------------------'
+ */
+// If it accepts an argument (i.e, is a function), it doesn't need KC_.
+// Otherwise, it needs KC_*
+[PSB] = LAYOUT_ergodox(
+        // left hand
+        KC_GRAVE,       KC_1,         KC_2,     KC_3,    KC_4,     KC_5,            KC_TRNS,
+        KC_DELT,        KC_Q,         KC_W,     KC_E,    KC_R,     KC_T,            KC_TRNS,
+        KC_TAB,         KC_A,         KC_S,     KC_D,    KC_F,     KC_G,
+        KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,     LT(PSN,KC_B),    KC_ESC,
+        KC_FN1,         KC_QUOT,      KC_H,     KC_LALT, KC_LCTRL,
+                                                             KC_PGUP,       KC_RGUI,
+                                                                            KC_PSCR,
+                                                     KC_SPC, KC_BSPC, LT(I3,KC_HOME),
+        // right hand
+             KC_TRNS,      KC_6,   KC_7,    KC_8,    KC_9,       KC_0,              KC_MINS,
+             KC_TRNS,      KC_Y,   KC_U,    KC_I,    KC_O,       KC_P,              KC_EQL,
+                           KC_H,   KC_J,    KC_K,    KC_L,       LT(MDIA, KC_SCLN), KC_QUOT,
+             MEH_T(KC_NO), KC_N,   KC_M,    KC_COMM, KC_DOT,     CTL_T(KC_SLSH),    RSFT_T(KC_BSLS),
+                                   KC_RALT, KC_RGUI, RGUI(KC_D), KC_TRNS,           KC_TRNS,
+             KC_TRNS,       KC_PGDN,
+             KC_INS,
+             LT(I3,KC_END), KC_FN1, KC_ENT
+    ),
+/* Photoshop_Numbers
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |  6   |   7  |   8  |   9  |   0  |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 |      |      |      |       |      |        |      |
+ *                                 |      |      |------|       |------|        |      |
+ *                                 |      |      |      |       |      |        |      |
+ *                                 `--------------------'       `----------------------'
+ */
+// If it accepts an argument (i.e, is a function), it doesn't need KC_.
+// Otherwise, it needs KC_*
+[PSN] = LAYOUT_ergodox(
+        // left hand
+        KC_TRNS,       KC_6,            KC_7,        KC_8,       KC_9,        KC_0,       KC_TRNS,
+        KC_TRNS,       KC_TRNS,         KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+        KC_TRNS,       KC_TRNS,         KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,
+        KC_TRNS,       KC_TRNS,         KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+          KC_TRNS,     KC_TRNS,         KC_TRNS,     KC_TRNS,    KC_TRNS,
+                                                                                 KC_TRNS, KC_TRNS,
+                                                                                          KC_TRNS,
+                                                                        KC_TRNS, KC_TRNS, KC_TRNS,
+        // right hand
+        KC_TRNS,      KC_TRNS,          KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+        KC_TRNS,      KC_TRNS,          KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+                      KC_TRNS,          KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+        KC_TRNS,      KC_TRNS,          KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+                                        KC_TRNS,     KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS,
+        KC_TRNS,       KC_TRNS,
+        KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS
+    ),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
